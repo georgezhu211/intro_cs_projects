@@ -117,6 +117,16 @@ class Tree
     return [left_depth, right_depth].max
   end
 
+  def balance?
+    diff = height(@root.left) - height(@root.right)
+    return true if diff.between?(-1,1)
+    false
+  end
+
+  def rebalance
+    @root = build_tree(level_order)
+  end
+
 
   # Binary Tree Traversal
 
@@ -166,8 +176,10 @@ end
 arr = [1,3,5,7,9,11,13]
 
 tree = Tree.new(arr)
-tree.insert(2)
+tree.insert(6)
+tree.insert(6.5)
 tree.pretty_print
-node = tree.find(7)
-puts tree.height(node)
-puts tree.depth(node)
+p tree.balance?
+tree.rebalance
+tree.pretty_print
+p tree.balance?
