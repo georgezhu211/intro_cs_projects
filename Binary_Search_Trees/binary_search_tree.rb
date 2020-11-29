@@ -117,7 +117,7 @@ class Tree
     return [left_depth, right_depth].max
   end
 
-  def balance?
+  def balanced?
     diff = height(@root.left) - height(@root.right)
     return true if diff.between?(-1,1)
     false
@@ -173,13 +173,24 @@ class Tree
   end
 end
 
-arr = [1,3,5,7,9,11,13]
-
+arr = Array.new(15) { rand(1..100) }
 tree = Tree.new(arr)
-tree.insert(6)
-tree.insert(6.5)
 tree.pretty_print
-p tree.balance?
+puts tree.balanced?
+p tree.level_order
+p tree.preorder
+p tree.inorder
+p tree.postorder
+tree.insert(120)
+tree.insert(130)
+tree.insert(140)
+tree.pretty_print
+tree.balanced?
 tree.rebalance
 tree.pretty_print
-p tree.balance?
+tree.balanced?
+p tree.level_order
+p tree.preorder
+p tree.inorder
+p tree.postorder
+
