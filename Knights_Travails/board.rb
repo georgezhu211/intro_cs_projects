@@ -1,6 +1,7 @@
 class Board
   def initialize
     puts "Board has been initialized."
+    @board = Array.new(8) { Array.new(8, ' ') }
   end
 
   def display_board
@@ -29,5 +30,17 @@ class Board
     tmp.unshift(" #{file} ")
     tmp.push("|")
     tmp.join
+  end
+
+  def place_piece(position, piece)
+    x, y = position[0], position[1]
+    @board[x][y] = piece.mark
+  end
+
+  def place_x(moves)
+    moves.each do |move|
+      x, y = move[0], move[1]
+      @board[x][y] = 'x'
+    end
   end
 end
