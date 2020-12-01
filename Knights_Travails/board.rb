@@ -1,39 +1,9 @@
-class Chess
+class Board
   def initialize
-    @board = Board.new
-    @knight = Knight.new(@board)
-  end
-
-  def knight_moves(pos)
-    place_piece(pos, @knight.mark)
-    display_board
-  end
-
-  def place_piece(pos, mark)
-    @board.place_piece(pos, mark)
+    puts "Board has been initialized."
   end
 
   def display_board
-    @board.display
-  end
-end
-
-class Knight
-  attr_reader :mark
-  def initialize(board)
-    @board = board
-    @mark = 'K'
-  end
-
-
-end
-
-class Board
-  def initialize
-    @board = Array.new(8) { Array.new(8, ' ') }
-  end
-
-  def display
     puts "   +---+---+---+---+---+---+---+---+"
     puts display_helper(7)
     puts "   +---+---+---+---+---+---+---+---+"
@@ -60,12 +30,4 @@ class Board
     tmp.push("|")
     tmp.join
   end
-
-  def place_piece(pos, mark)
-    x, y = pos[0], pos[1]
-    @board[x][y] = mark
-  end
 end
-
-chess = Chess.new
-chess.knight_moves([4,4])
